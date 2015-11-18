@@ -43,9 +43,11 @@ function findIndex(arr, val){
 function guessRight(){
     prompt.get('guess', function(error, result){
         //We are going over every letter and checking it against the input
+        var found;
         splitWord.forEach(function(letter) {
             //If we find a match
             if(result.guess === letter){
+                found = true;
                 //We check to see if there are duplicate letters in the word
                 //If there are duplicates we store the possitions of those duplicates in the duplicates array
                 var duplicates = findIndex(splitWord,result.guess);
@@ -66,15 +68,21 @@ function guessRight(){
             }
             
         })
+            if(found && hangProgress < 4){
             //We output to the console the progress
             console.log(guessedLettersRight);
             guessRight();
+            } else if (!found && hangProgress < 3){
+                hangProgress++;
+                console.log("You is goona die!");
+                guessRight();
+            } else {
+                console.log("You dead!");
+                return;
+            }
     })
 }
 
-function guessWrong(){
-    console.log("///////////////////////////")
-}
 
 guessRight();
 
