@@ -1,54 +1,25 @@
 
-/*
- ___________.._______
-| .__________))______|
-| | / /      ||
-| |/ /       ||
-| | /        ||.-''.
-| |/         |/  _  \
-| |          ||  `/,|
-| |          (\\`_.'
-| |         .-`--'.
-| |        /Y . . Y\
-| |       // |   | \\
-| |      //  | . |  \\
-| |     ')   |   |   (`
-| |          ||'||
-| |          || ||
-| |          || ||
-| |          || ||
-| |         / | | \
-""""""""""|_`-' `-' |"""|
-|"|"""""""\ \       '"|"|
-| |        \ \        | |
-: :         \ \       : : 
-. .          `'       . .
-
-*/
-
-
 var hangHead = " ___________.._______\n| .__________))______|\n| | / /      ||\n| |/ /       ||\n| | /        ||.-''.\n| |/         |/  _  \\\n| |          ||  `/,|\n| |          (\\\\`_.'";
 var hangNeck = "| |         .-`--'.\n| |        /Y . . Y\\\n| |       // |   | \\\\";
 var hangBody = "| |      //  | . |  \\\n| |     ')   |   |   (`\n| |          ||'||\n| |          || ||";
 var hangFeet = '| |          || ||\n| |          || ||\n| |         / | | \\\n""""""""""|_`-" `-" |"""|';
 var hangAll = '|"|"""""""\\ \\       \'"|"|\n| |        \\ \\        | |\n: :         \\ \\       : : \n. .          `\'       . .';
 
+var hanging = [hangHead, hangNeck, hangBody, hangFeet, hangAll];
 
-
-//'space-cow', 'terminator', 'crazy'
 
 var prompt = require("prompt");
 
-var words = ['armageddon'];
+var words = ['armageddon', 'cow', 'terminator', 'crazy', 'love'];
 
 var randomWord = words[Math.floor(Math.random() * words.length)];
 
 var hangProgress = -1;
+var hangMan = "";
 
 var splitWord = randomWord.split('');
 
 var guessedLettersRight = [];
-var guessedLettersWrong = [];
 
 splitWord.forEach(function(letter){
     letter = "_";
@@ -72,8 +43,6 @@ function findIndex(arr, val){
     return newArr;
 }
 
-
-
 ////////////////////////////////////////////////////////////////////////////////
 
 function guessRight(){
@@ -87,7 +56,7 @@ function guessRight(){
                 //We check to see if there are duplicate letters in the word
                 //If there are duplicates we store the possitions of those duplicates in the duplicates array
                 var duplicates = findIndex(splitWord,result.guess);
-                console.log(duplicates);
+                //console.log(duplicates);
                 //If there are no duplicates we run the first scenario
                 if(duplicates.length < 2){
                     guessedLettersRight.splice(splitWord.indexOf(letter),1, splitWord[splitWord.indexOf(letter)]);
@@ -104,28 +73,48 @@ function guessRight(){
             }
             
         })
-            if(found && hangProgress < 4){
+            
+            if(guessedLettersRight.join("") === randomWord.toString("")) {
+                console.log(guessedLettersRight);
+                console.log("YOU WIN!");
+                return;
+            }else if(found && hangProgress < 4){
             //We output to the console the progress
             console.log(guessedLettersRight);
             guessRight();
             } else if (!found && hangProgress < 3){
+                hangProgress++;
+                guessRight();
+                console.log("You will die!");
+                if(hangProgress === 0){
+                    console.log(hangHead);
+                } else if (hangProgress === 1){
+                    console.log(hangHead);
+                    console.log(hangNeck);
+                } else if (hangProgress === 2){
+                    console.log(hangHead);
+                    console.log(hangNeck);
+                    console.log(hangBody);
+                } else if (hangProgress === 3){
+                    console.log(hangHead);
+                    console.log(hangNeck);
+                    console.log(hangBody);
+                    console.log(hangFeet);
+                }
+            } else {
+                console.log("You are dead!");
                 console.log(hangHead);
                 console.log(hangNeck);
                 console.log(hangBody);
                 console.log(hangFeet);
                 console.log(hangAll);
-                hangProgress++;
-                console.log("You is goona die!");
-                guessRight();
-            } else {
-                console.log("You dead!");
                 return;
             }
     })
 }
 
-
 guessRight();
+
 
 
 
