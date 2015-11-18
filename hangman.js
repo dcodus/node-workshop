@@ -1,4 +1,40 @@
 
+/*
+ ___________.._______
+| .__________))______|
+| | / /      ||
+| |/ /       ||
+| | /        ||.-''.
+| |/         |/  _  \
+| |          ||  `/,|
+| |          (\\`_.'
+| |         .-`--'.
+| |        /Y . . Y\
+| |       // |   | \\
+| |      //  | . |  \\
+| |     ')   |   |   (`
+| |          ||'||
+| |          || ||
+| |          || ||
+| |          || ||
+| |         / | | \
+""""""""""|_`-' `-' |"""|
+|"|"""""""\ \       '"|"|
+| |        \ \        | |
+: :         \ \       : : 
+. .          `'       . .
+
+*/
+
+
+var hangHead = " ___________.._______\n| .__________))______|\n| | / /      ||\n| |/ /       ||\n| | /        ||.-''.\n| |/         |/  _  \\\n| |          ||  `/,|\n| |          (\\\\`_.'";
+var hangNeck = "| |         .-`--'.\n| |        /Y . . Y\\\n| |       // |   | \\\\";
+var hangBody = "| |      //  | . |  \\\n| |     ')   |   |   (`\n| |          ||'||\n| |          || ||";
+var hangFeet = '| |          || ||\n| |          || ||\n| |         / | | \\\n""""""""""|_`-" `-" |"""|';
+var hangAll = '|"|"""""""\\ \\       \'"|"|\n| |        \\ \\        | |\n: :         \\ \\       : : \n. .          `\'       . .';
+
+
+
 //'space-cow', 'terminator', 'crazy'
 
 var prompt = require("prompt");
@@ -73,6 +109,11 @@ function guessRight(){
             console.log(guessedLettersRight);
             guessRight();
             } else if (!found && hangProgress < 3){
+                console.log(hangHead);
+                console.log(hangNeck);
+                console.log(hangBody);
+                console.log(hangFeet);
+                console.log(hangAll);
                 hangProgress++;
                 console.log("You is goona die!");
                 guessRight();
@@ -87,15 +128,4 @@ function guessRight(){
 guessRight();
 
 
-/*
-splitWord.forEach(function(letter) {
-            if(result.guess === letter){
-                //splitWord[splitWord.indexOf(letter)]
-                //guessedLettersRight.splice(splitWord.indexOf(letter),1, splitWord[splitWord.indexOf(letter)]);
-                
-                
-                //console.log(guessedLettersRight);
-            }
-        })
-*/
 
