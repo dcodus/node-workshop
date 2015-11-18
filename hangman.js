@@ -1,9 +1,9 @@
 
-
+//'space-cow', 'terminator', 'crazy'
 
 var prompt = require("prompt");
 
-var words = ['armageddon', 'space-cow', 'terminator', 'crazy'];
+var words = ['armageddon'];
 
 var randomWord = words[Math.floor(Math.random() * words.length)];
 
@@ -56,7 +56,7 @@ function guessRight(){
                     //If there are dupliactes we run the second one
                 } else if(duplicates.length > 1) {
                     //We run a for loop to go over all the positions of duplicates
-                    for(var y = 0; y <= duplicates.length; y++){
+                    for(var y = 0; y < duplicates.length; y++){
                         //THIS IS IMPORTANT! Here we take our duplicate letter, and add it to every index position
                         //in guessedLettersRight that matches the index positions of duplicates.
                                             //THIS SHOW THE POSITION  //THIS IS WHERE WE ADD THE SAME LETTER
@@ -64,15 +64,16 @@ function guessRight(){
                     }
                 }
             }
+            
         })
-        //We output to the console the progress
-        console.log(guessedLettersRight);
-        guessRight();
+            //We output to the console the progress
+            console.log(guessedLettersRight);
+            guessRight();
     })
 }
 
 function guessWrong(){
-    
+    console.log("///////////////////////////")
 }
 
 guessRight();
